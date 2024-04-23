@@ -127,6 +127,13 @@ world.afterEvents.chatSend.subscribe((e) => {
     if (mazecommand[1] == "create") {
       if (!mazecommand[2] || !mazecommand[3])
         e.sender.sendMessage("ERR: コマンドの引数が足りません");
+      if (
+        mazecommand[2] < 3 ||
+        mazecommand[2] % 2 === 0 ||
+        mazecommand[3] < 3 ||
+        mazecommand[3] % 2 === 0
+      )
+        e.sender.sendMessage("ERR: 幅は３以上かつ奇数である必要があります。");
       const x = Math.floor(e.sender.location.x);
       const y = Math.floor(e.sender.location.y);
       const z = Math.floor(e.sender.location.z);
